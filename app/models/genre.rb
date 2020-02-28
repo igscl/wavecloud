@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-    belongs_to :track
+    has_many :tracks
 end
