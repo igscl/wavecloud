@@ -1,0 +1,26 @@
+<%= form_with(model: @track, local: true) do |form| %>
+<%# this is calling the method 'new' in the track controller#%>
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :genre %>
+        <%= form.text_field :genre %>
+    </div>
+    <div>
+        <%= form.label :album %>
+        <%= form.text_field :album %>
+    </div>
+    <div>
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+    </div>
+    <div>
+        <%= form.label :donate %>
+        <%= form.number_field :donate, min: 0 %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
