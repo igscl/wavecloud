@@ -1,7 +1,9 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
-  before_action :set_genre, only: [:new, :edit]
-  
+  before_action :set_genre, only: [:new, :edit, :create]
+  before_action :authenticate_user!
+  # before_action :set_user_track, only: [:edit, :update, :destroy]
+
   def index
     @tracks = Track.all
     #Saving this into an instance variable. We want to save what we need right now.
@@ -45,7 +47,7 @@ class TracksController < ApplicationController
   private
 
   def track_params
-      params.require(:track).permit(:title, :genre_id, :album, :description, :donate, :track_id)
+      params.require(:track).permit(:title, :genre_id, :album, :description, :donate, :track_id, :user_id)
       # The params that we require for the track are these
       # CHECK to change requirement to have a file to upload
   end

@@ -5,8 +5,8 @@
         <%= form.text_field :title %>
     </div>
     <div>
-        <%= form.label :genre %>
-        <%= form.text_field :genre %>
+        <%= form.label :genre_id %>
+        <%= form.select(:genre_id, @genre.map{|b| [b.name, b.id]}) %>
     </div>
     <div>
         <%= form.label :album %>
