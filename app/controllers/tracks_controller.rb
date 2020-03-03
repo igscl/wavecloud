@@ -2,7 +2,6 @@ class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :set_genre, only: [:new, :edit, :create]
   before_action :authenticate_user!
-  has_one_attached :audio
 
   def index
     @tracks = Track.all
