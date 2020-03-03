@@ -3,7 +3,7 @@
     <% @tracks.each do |track| %>
             <p>----------------------------------</p>
             <% if track.audio.attached? then %>
-            <button> <%= link_to "play", track.audio, class:"html5" %></button>
+            <button> <%= link_to "play", track.audio, class: "html5" %></button>
             <% end %>
 
             <%# var sound = new Howl({
