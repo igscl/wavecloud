@@ -1,27 +1,28 @@
 <%# <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.core.min.js"></script> %>
+<div class="container text-center">
+    <% @tracks.each do |track| %>
+            <p>----------------------------------</p>
+            <% if track.audio.attached? then %>
+            <button> <%= link_to "play", track.audio, class:"html5" %></button>
+            <% end %>
 
-<% @tracks.each do |track| %>
-         <p>----------------------------------</p>
-        <% if track.audio.attached? then %>
-        <button> <%= link_to "play", track.audio, class:"html5" %></button>
-        <% end %>
+            <%# var sound = new Howl({
+            src: [track.audio]
+            });
 
-        <%# var sound = new Howl({
-        src: [track.audio]
-        });
+            sound.play(); %>
+            
+            <%# link_to track.audio if track.audio.attached? %>
+            <p><%= track.title %></p>
+            <p><%= track.description %></p>
+            <p><%= track.donate %></p>
 
-        sound.play(); %>
-        
-        <%# link_to track.audio if track.audio.attached? %>
-        <p><%= track.title %></p>
-        <p><%= track.description %></p>
-        <p><%= track.donate %></p>
-
-        <%# <%= link_to "edit", edit_listing_path(listing.id) %>
-        <%# link_to "edit", edit_listing_path(listing.id) if current_user.id == listing.user.id %>
-        <%# link_to "show", listing_path(listing.id) %>
-        <%# link_to "delete", listing_path(listing),
-                method: :delete,
-                data: { confirm: "Are you sure?" } if current_user.id == listing.user.id %>
-    <%# end %>
-<% end %>
+            <%# <%= link_to "edit", edit_listing_path(listing.id) %>
+            <%# link_to "edit", edit_listing_path(listing.id) if current_user.id == listing.user.id %>
+            <%# link_to "show", listing_path(listing.id) %>
+            <%# link_to "delete", listing_path(listing),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } if current_user.id == listing.user.id %>
+        <%# end %>
+    <% end %>
+</div>
