@@ -2,6 +2,7 @@ class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
   before_action :set_genre, only: [:new, :edit, :create]
   before_action :authenticate_user!
+  has_one_attached :audio
 
   def index
     @tracks = Track.all
@@ -46,7 +47,7 @@ class TracksController < ApplicationController
   private
 
   def track_params
-      params.require(:track).permit(:title, :genre_id, :album, :description, :donate, :track_id)
+      params.require(:track).permit(:title, :genre_id, :album, :description, :donate, :track_id, :audio)
       # The params that we require for the track are these
       # CHECK to change requirement to have a file to upload
   end
