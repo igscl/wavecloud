@@ -5,13 +5,12 @@ class TracksController < ApplicationController
 
   def index
     @tracks = Track.all
-    console
+    # @tracks = User.find(1).tracks
     #Saving this into an instance variable. We want to save what we need right now.
   end
 
   def create
     @track = current_user.tracks.create(track_params)
-    console
     if @track.errors.any?
         render "new"
     else
@@ -25,6 +24,7 @@ class TracksController < ApplicationController
   end
   
   def show
+
   end
 
   def edit

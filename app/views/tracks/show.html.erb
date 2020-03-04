@@ -1,14 +1,14 @@
 <h1><%= @track.title %></h1>
 <p>Description: <%= @track.description %></p>
 <p>Album: <%= @track.album %></p>
-<p>Genre: <%= @track.genre %></p>
+<p>Genre: <%= @track.genre.name %></p>
 <p>Donate: <%= @track.donate %></p>
 
 <%# if @track.audio.attached? then %>
-<%= link = (link_to "play", @track.audio, class: "html5") %>
-<%= root_url %>
-<%= link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
-<%= @track.audio.service_url %>
+<%# link = (link_to "play", @track.audio, class: "html5") %>
+<%# root_url %>
+<%# link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
+<%# @track.audio.service_url %>
 <%# end %>
 
 
@@ -93,7 +93,7 @@
 
             // Load the audio file from your domain !
             Spectrum.load(
-                '<%= @track.audio.service_url %>'
+                '<%= rails_blob_path(@track.audio) %>'
                                 
                 );
         </script>
