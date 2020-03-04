@@ -5,6 +5,7 @@ class TracksController < ApplicationController
 
   def index
     @tracks = Track.all
+    console
     #Saving this into an instance variable. We want to save what we need right now.
   end
 
