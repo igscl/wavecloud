@@ -8,7 +8,7 @@
 <%= link = (link_to "play", @track.audio, class: "html5") %>
 <%= root_url %>
 <%= link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
-<%= rails_blob_path(@track.audio) %>
+<%= @track.audio.service_url %>
 <%# end %>
 
 
@@ -93,7 +93,7 @@
 
             // Load the audio file from your domain !
             Spectrum.load(
-                '<%= root_url[0...-1] + rails_blob_path(@track.audio) %>'
+                '<%= @track.audio.service_url %>'
                                 
                 );
         </script>
