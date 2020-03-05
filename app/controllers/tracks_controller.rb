@@ -30,7 +30,7 @@ class TracksController < ApplicationController
       line_items: [{
           name: @track.title,
           description: @track.description,
-          amount: @track.donate * 100,
+          amount: @track.donate * 100,         
           currency: 'aud',
           quantity: 1,
       }],
