@@ -16,6 +16,7 @@
             <p><%= track.title %></p>
             <p><%= track.description %></p>
             <p><%= track.donate %></p>
+            <p><%= link_to "#{track.user.email}", profile_path(track.user.id) %></p>
 
                 <%= link_to "edit", edit_track_path(track.id) if current_user.id == track.user.id %>
                 <%= link_to "show", track_path(track.id) %>
