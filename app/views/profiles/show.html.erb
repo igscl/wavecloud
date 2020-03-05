@@ -1,4 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+
+<div class="container text-center">
+    <% @user_tracks.each do |track| %>
+            <p>----------------------------------</p>
+            <% if track.audio.attached? then %>
+            <button> <%= link_to "play", track.audio, class: "html5" %></button>
+            <% end %>
+
+            <p><%= track.title %></p>
+            <p><%= track.description %></p>
+            <p><%= track.donate %></p>
+
+    <% end %>
+    
+</div>
+
+
+
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', profiles_path %>

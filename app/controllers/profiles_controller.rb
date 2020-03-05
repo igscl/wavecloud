@@ -10,6 +10,8 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    id = params[:id]
+    @user_tracks = User.find(id).tracks
   end
 
   # GET /profiles/new
@@ -71,4 +73,5 @@ class ProfilesController < ApplicationController
     def profile_params
       params.fetch(:profile, {})
     end
+  
 end
