@@ -24,7 +24,27 @@ class TracksController < ApplicationController
   end
   
   def show
-    
+    session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      customer_email: current_user.email,
+      line_items: [{
+          name: @track.title,
+          description: @track.description,
+          amount: @track.donate * 100,
+          currency: 'aud',
+          quantity: 1,
+      }],
+      payment_intent_data: {
+          metadata: {
+              user_id: current_user.id,
+              track_id: @track.id
+          }
+      },
+      success_url: "#{root_url}payments/success?userId=#{current_user.id}&trackId=#{@track.id}",
+      cancel_url: "#{root_url}tracks"
+  )
+
+  @session_id = session.id
   end
 
   def edit
