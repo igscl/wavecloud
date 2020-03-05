@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   # get 'tracks/index'
   get "/", to: "tracks#index", as: "root"
   # get 'users/:id/tracks' => 'users#tracks', :as => :user_tracks
