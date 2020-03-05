@@ -100,10 +100,9 @@
                 );
         </script>
     <% end %>
-    <% @track.donate = 44%>
-    <% @value = @track.donate %>
 
-    <button data-stripe="payment"> Donate default <%= number_to_currency(@value) %></button>
+
+    <button data-stripe="payment"> Donate default <%= number_to_currency(@track.donate) %></button>
     <div>Set a different value:</div>
     
     <script src="https://js.stripe.com/v3/"></script>
