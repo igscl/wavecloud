@@ -6,9 +6,10 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
+    redirect_to Profile.find(current_user.id)
     # id = @profile.user_id
     # redirect_to profile_url(id)
-    @profile = Profile.find(current_user.id)
+    # @profile = Profile.find(current_user.id)
   end
 
   # GET /profiles/1
@@ -49,7 +50,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
-    if current_user = @profile.user_id
+    if current_user == @profile.user_id
       respond_to do |format|
         if @profile.update(profile_params)
           format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
@@ -85,6 +86,7 @@ class ProfilesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])
+      
     rescue ActiveRecord::RecordNotFound
       flash[:notice] = "User profile does not exist."
       redirect_to :action => 'index'
@@ -95,13 +97,9 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:user_id)
     end
     def authorize_user
-      current_user.id != @profile.user_id
-      flash[:notice] = "Sorry, not authorized to do that."
-      redirect_to :action => 'index'
-    end
-
-    def authorize_profile_view
-      current_user.id != @profile.user_id
-      redirect_to root_path
+      if current_user.id != @profile.user_id
+        flash[:notice] = "Sorry, not authorized to do that."
+        redirect_to :action => 'index'
+      end
     end
 end
