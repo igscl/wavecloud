@@ -17,7 +17,7 @@ class PaymentsController < ApplicationController
             
             buyer = User.find(payment_intent.metadata.user_id)
             listing = Track.find(payment_intent.metadata.track_id)
-            listing.donate += listing.donate
+            listing.total_donations += listing.donate
             listing.save
     
             # order = Order.new
