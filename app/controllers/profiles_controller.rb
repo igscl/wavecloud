@@ -1,11 +1,14 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index]
 
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    # id = @profile.user_id
+    # redirect_to profile_url(id)
+    @profile = Profile.find(current_user.id)
   end
 
   # GET /profiles/1
@@ -95,5 +98,10 @@ class ProfilesController < ApplicationController
       current_user.id != @profile.user_id
       flash[:notice] = "Sorry, not authorized to do that."
       redirect_to :action => 'index'
+    end
+
+    def authorize_profile_view
+      current_user.id != @profile.user_id
+      redirect_to root_path
     end
 end
