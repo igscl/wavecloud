@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :tracks
   #added this line so I can automatically create all the routes for the tracks controller
   get "/payments/success", to: "payments#success"
+
+  post "/payments/webhook", to: "payments#webhook"
+
 end
