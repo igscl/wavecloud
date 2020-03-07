@@ -29,7 +29,6 @@ class TracksController < ApplicationController
       customer_email: current_user.email,
       line_items: [{
           name: @track.title,
-          description: @track.description,
           amount: 100, #@track.donate * 100,         
           currency: 'aud',
           quantity: 1,
