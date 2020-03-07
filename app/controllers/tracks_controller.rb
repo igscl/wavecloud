@@ -70,10 +70,11 @@ class TracksController < ApplicationController
     type = params[:type]
     if type == "favorite"
       current_user.favorites << @track
-
+      redirect_to track_url
     elsif type == "unfavorite"
       current_user.favorites.delete(@track)
-      
+      redirect_to track_url
+
     end
   end
   private

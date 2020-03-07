@@ -6,9 +6,11 @@
 <p>Donation target: <%= @track.donate %></p>
 <p>Total donations: <%= @track.total_donations %></p>
 <%= render "layouts/favicon"%>
-<% if current_user %>
-  <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
-  <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
+
+<% if current_user.favorite_ids.include? @track.id %>
+  <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
+<% else %>
+  <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
 <% end %>
 
 <%# if @track.audio.attached? then %>
