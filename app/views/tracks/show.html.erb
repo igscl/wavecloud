@@ -1,8 +1,9 @@
+<div class="on-top">
 <h1><%= @track.title %></h1>
 <p>Description: <%= @track.description %></p>
 <p>Album: <%= @track.album %></p>
 <p>Genre: <%= @track.genre.name %></p>
-<p>Donate: <%= @track.donate %></p>
+<p>Donation target: <%= @track.donate %></p>
 <p>Total donations: <%= @track.total_donations %></p>
 
 <%# if @track.audio.attached? then %>
@@ -103,7 +104,7 @@
     <% end %>
 
 
-    <button data-stripe="payment"> Donate default <%= number_to_currency(@track.donate) %></button>
+    <button data-stripe="payment"> Donate default <%= number_to_currency(1) %></button>
     <div>Set a different value:</div>
     
     <script src="https://js.stripe.com/v3/"></script>
@@ -122,3 +123,5 @@
         });
     </script>
 <%# end %>
+</div>
+<%= render "layouts/bg_change"%>
