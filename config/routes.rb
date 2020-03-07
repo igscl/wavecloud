@@ -11,4 +11,12 @@ Rails.application.routes.draw do
 
   post "/payments/webhook", to: "payments#webhook"
 
+  resources :tracks do
+    put :favorite, on: :member
+  end
+
+  get '*path', to: 'tracks#notfound', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
+  #CHECK THIS
 end

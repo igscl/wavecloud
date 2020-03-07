@@ -5,6 +5,11 @@
 <p>Genre: <%= @track.genre.name %></p>
 <p>Donation target: <%= @track.donate %></p>
 <p>Total donations: <%= @track.total_donations %></p>
+<%= render "layouts/favicon"%>
+<% if current_user %>
+  <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
+  <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
+<% end %>
 
 <%# if @track.audio.attached? then %>
 <%# link = (link_to "play", @track.audio, class: "html5") %>

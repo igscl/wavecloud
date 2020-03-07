@@ -1,5 +1,5 @@
 class TracksController < ApplicationController
-  before_action :set_track, only: [:show, :edit, :update, :destroy]
+  before_action :set_track, only: [:show, :edit, :update, :destroy, :favorite]
   before_action :set_genre, only: [:new, :edit, :create]
   before_action :authenticate_user!
 
@@ -64,6 +64,18 @@ class TracksController < ApplicationController
     redirect_to root_path
   end
 
+  # Add and remove favorite recipes
+  # for current_user
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.favorites << @track
+
+    elsif type == "unfavorite"
+      current_user.favorites.delete(@track)
+      
+    end
+  end
   private
 
   def track_params

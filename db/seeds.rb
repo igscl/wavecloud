@@ -14,19 +14,19 @@
 #     user.save!
 # end
 
-for i in 1..10
-    Track.create(
-        title: Faker::Music.band,
-        album: Faker::Music.album,
-        description: Faker::Quote.famous_last_words,
-        user_id: Faker::Number.between(from: 1, to: 1),
-        donate: Faker::Number.between(from: 1, to: 20),
-        genre_id: Faker::Number.between(from: 1, to: 10)
+# for i in 1..10
+#     Track.create(
+#         title: Faker::Music.band,
+#         album: Faker::Music.album,
+#         description: Faker::Quote.famous_last_words,
+#         user_id: Faker::Number.between(from: 1, to: 1),
+#         donate: Faker::Number.between(from: 1, to: 20),
+#         genre_id: Faker::Number.between(from: 1, to: 10)
 
-    )
+#     )
 
-    puts "Created #{i} tracks"
-end
+#     puts "Created #{i} tracks"
+# end
 
 # for i in 1..10
 #     Genre.create(
