@@ -15,6 +15,14 @@
 # end
 
 for i in 1..10
+    Genre.create(
+        name: Faker::Music.genre,
+    )
+
+    puts "Created #{i} genres"
+end
+
+for i in 1..10
     Track.create(
         title: Faker::Music.band,
         album: Faker::Music.album,
@@ -28,10 +36,4 @@ for i in 1..10
     puts "Created #{i} tracks"
 end
 
-for i in 1..10
-    Genre.create(
-        name: Faker::Music.genre,
-    )
 
-    puts "Created #{i} genres"
-end

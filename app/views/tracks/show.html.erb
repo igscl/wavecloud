@@ -1,4 +1,4 @@
-<div class="on-top d-flex flex-column ">
+<div class="d-flex flex-column on-top ">
 <div class="d-flex flex-column align-items-center">
     <br />
     <h1><%= @track.title %></h1>
@@ -19,15 +19,8 @@
     <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
     <% end %>
 
-    <%# if @track.audio.attached? then %>
-    <%# link = (link_to "play", @track.audio, class: "html5") %>
-    <%# root_url %>
-    <%# link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
-    <%# @track.audio.service_url %>
-    <%# end %>
-
-    <%# @user_tracks.each do |track| %>
 </div>
+<div class="d-flex flex-column">
 <% if @track.audio.attached? then %>
 
         <!-- Create a div where the audio waves will be shown --> 
@@ -134,6 +127,7 @@
         });
         });
     </script>
+    </div>
 <%# end %>
 </div>
 </div>
