@@ -33,8 +33,8 @@ class PaymentsController < ApplicationController
         # ... handle other event types
         else
             # Unexpected event type
-            render :nothing => true, :status => :bad_request
-            # render body: nil, status: bad_request
+            # render :nothing => true, :status => :bad_request
+            render body: nil, status: bad_request
             return
         end
         # success, but don't need to send anything back to Stripe
