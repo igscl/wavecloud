@@ -1,30 +1,33 @@
-<div class="on-top ">
-<h1><%= @track.title %></h1>
-<p>Description: <%= @track.description %></p>
-<p>Album: <%= @track.album %></p>
-<p>Genre: <%= @track.genre.name %></p>
-<p>Donation target: $<%= @track.donate %></p>
-<p>Total donations: $<%= @track.total_donations %></p>
-<p>
-<div>
-<button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button>
+<div class="on-top d-flex flex-column ">
+<div class="d-flex flex-column align-items-center">
+    <br />
+    <h1><%= @track.title %></h1>
+    <p>Description: <%= @track.description %></p>
+    <p>Album: <%= @track.album %></p>
+    <p>Genre: <%= @track.genre.name %></p>
+    <p>Donation target: $<%= @track.donate %></p>
+    <p>Total donations: $<%= @track.total_donations %></p>
+    <p>
+    <div>
+    <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button>
+    </div>
+    </p>
+
+    <% if current_user.favorite_ids.include? @track.id %>
+    <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
+    <% else %>
+    <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
+    <% end %>
+
+    <%# if @track.audio.attached? then %>
+    <%# link = (link_to "play", @track.audio, class: "html5") %>
+    <%# root_url %>
+    <%# link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
+    <%# @track.audio.service_url %>
+    <%# end %>
+
+    <%# @user_tracks.each do |track| %>
 </div>
-</p>
-
-<% if current_user.favorite_ids.include? @track.id %>
-  <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
-<% else %>
-  <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
-<% end %>
-
-<%# if @track.audio.attached? then %>
-<%# link = (link_to "play", @track.audio, class: "html5") %>
-<%# root_url %>
-<%# link_to @track.audio, rails_blob_path(@track.audio, disposition: 'attachment') %>
-<%# @track.audio.service_url %>
-<%# end %>
-
-<%# @user_tracks.each do |track| %>
 <% if @track.audio.attached? then %>
 
         <!-- Create a div where the audio waves will be shown --> 
@@ -32,9 +35,9 @@
 
         <!-- Create action buttons -->
         <div class="d-flex justify-content-center">
-            <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn-success"/>
-            <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn-success"/>
-            <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn-success" />
+            <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn btn-primary text-white"/>
+            <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn btn-primary text-white"/>
+            <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn btn-primary text-white" />
         </div>
         <!-- Load the wavesurferscript , in this case from a CDN -->
         <%# <script src="https://unpkg.com/wavesurfer.js"></script> %>
@@ -114,6 +117,7 @@
                 );
         </script>
     <% end %>
+<div class="align-items-center">
 
     <script src="https://js.stripe.com/v3/"></script>
 
@@ -131,5 +135,6 @@
         });
     </script>
 <%# end %>
+</div>
 </div>
 <%= render "layouts/bg_change"%>
