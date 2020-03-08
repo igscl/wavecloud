@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-for i in 1..10
-    user = User.new
-    user.email = "#{i}@1.com"
-    user.password = 'password'
-    user.password_confirmation = 'password'
-    user.save!
-end
+# for i in 1..10
+#     user = User.new
+#     user.email = "#{i}@1.com"
+#     user.password = 'password'
+#     user.password_confirmation = 'password'
+#     user.save!
+# end
 
 for i in 1..10
     Track.create(
