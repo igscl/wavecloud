@@ -14,7 +14,25 @@
  */
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
+$border-radius: .5rem;
+$theme-colors: (
+  "primary": #63b0e5,
+  "danger": #ff9999,
+  "lighter": #f7f7f7,
+  "white": rgb(255, 255, 255),
+);
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+$font-family-base: 'Roboto', sans-serif; 
+
 @import "bootstrap";
+
+// .body {
+//     background-color: white;
+//     font-family: 'Roboto', sans-serif;
+//     font-size: 20px;
+//     box-sizing: border-box;
+//     margin: 0;
+// }
 
 .background{
     width: 100vw;
@@ -24,16 +42,16 @@
     position: fixed;
     top: 0;
 
--webkit-animation: AnimationName 2s ease 1;
--moz-animation: AnimationName 2s ease 1;
-animation: AnimationName 2s ease 1;
+-webkit-animation: AnimationName 3s ease 1;
+-moz-animation: AnimationName 3s ease 1;
+animation: AnimationName 3s ease 1;
 }
-#colour-red{
-    background: linear-gradient(270deg, rgb(246, 255, 72), rgb(255, 0, 0));
+#colour-white{
+    background: linear-gradient(270deg, #63b0e5, white);
     background-size: 400% 400%;
 }
-#colour-green{
-    background: linear-gradient(270deg, rgb(255, 0, 0), rgb(51, 171, 0));
+#colour-pink{
+    background: linear-gradient(270deg, #ff9999, white);
 background-size: 400% 400%;
 }
 
