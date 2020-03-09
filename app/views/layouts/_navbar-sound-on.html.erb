@@ -1,0 +1,36 @@
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">myhar.money</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Feed", root_url, class: "nav-link" %>
+        <%-# <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -%>
+      </li>
+      <li class="nav-item">
+        <%= link_to "My Tracks", profile_url(current_user.id), class: "nav-link" %>
+        <%-# <a class="nav-link" href="#">My Profile</a> -%>
+      </li>
+      <li class="nav-item dropup">
+        <a class="nav-link dropdown-toggle" href="https://getbootstrap.com/" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My User Options</a>
+        <div class="dropdown-menu" aria-labelledby="dropdown10">
+          <%= link_to "Logout", destroy_user_session_path, class: "dropdown-item", method: :delete %>
+          <%= link_to "Create Track", new_track_url, class: "dropdown-item" %>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <% if @track.audio.attached? then %>
+        <li class="nav-item">
+          <div class="navbar-nav ml-auto">
+            <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn btn-primary text-white"/>
+            <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn btn-primary text-white"/>
+            <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn btn-primary text-white" />
+          </div>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

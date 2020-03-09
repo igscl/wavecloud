@@ -1,4 +1,4 @@
-<%= render '/layouts/navbar' %>
+<%= render '/layouts/navbar-sound-on' %>
 
 <div class="d-flex flex-column on-top ">
   <div class="d-flex flex-column align-items-center">
@@ -25,11 +25,9 @@
       <!-- Create a div where the audio waves will be shown -->
       <div id="audio-spectrum"></div>
       <!-- Create action buttons -->
-      <div class="d-flex justify-content-center">
-        <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn btn-primary text-white"/>
-        <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn btn-primary text-white"/>
-        <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn btn-primary text-white" />
-      </div>
+
+
+
       <!-- Load the wavesurferscript , in this case from a CDN -->
       <%# <script src="https://unpkg.com/wavesurfer.js"></script> %>
       <script >
