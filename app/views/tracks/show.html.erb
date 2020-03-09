@@ -1,5 +1,5 @@
 <div class="d-flex flex-column on-top ">
-<div class="d-flex flex-column align-items-center">
+  <div class="d-flex flex-column align-items-center">
     <br />
     <h1><%= @track.title %></h1>
     <p>Description: <%= @track.description %></p>
@@ -8,127 +8,120 @@
     <p>Donation target: $<%= @track.donate %></p>
     <p>Total donations: $<%= @track.total_donations %></p>
     <p>
-    <div>
-    <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button>
-    </div>
+      <div>
+        <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button>
+      </div>
     </p>
-
     <% if current_user.favorite_ids.include? @track.id %>
-    <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
+      <%= link_to image_tag("fire.png", :border=>0), favorite_track_path(@track, type: "unfavorite"), method: :put %>
     <% else %>
-    <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
+      <%= link_to image_tag("fire_bw.png", :border=>0), favorite_track_path(@track, type: "favorite"), method: :put %>
     <% end %>
-
-</div>
-<div class="d-flex flex-column">
-<% if @track.audio.attached? then %>
-
-        <!-- Create a div where the audio waves will be shown --> 
-        <div id="audio-spectrum"></div>
-
-        <!-- Create action buttons -->
-        <div class="d-flex justify-content-center">
-            <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn btn-primary text-white"/>
-            <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn btn-primary text-white"/>
-            <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn btn-primary text-white" />
-        </div>
-        <!-- Load the wavesurferscript , in this case from a CDN -->
-        <%# <script src="https://unpkg.com/wavesurfer.js"></script> %>
-
-        <script >
-            // Store the 3 buttons in some object
-            var buttons = {
-                play: document.getElementById("btn-play"),
-                pause: document.getElementById("btn-pause"),
-                stop: document.getElementById("btn-stop")
-            };
-
-            // Create an instance of wave surfer with its configuration
-            var Spectrum = WaveSurfer.create({
-                container: '#audio-spectrum',
-                progressColor: "#03a9f4"
-            });
-
-            // Handle Play button
-            buttons.play.addEventListener("click", function(){
-                Spectrum.play();
-
-                // Enable/Disable respectively buttons
-                buttons.stop.disabled = false;
-                buttons.pause.disabled = false;
-                buttons.play.disabled = true;
-            }, false);
-
-            // Handle Pause button
-            buttons.pause.addEventListener("click", function(){
-                Spectrum.pause();
-
-                // Enable/Disable respectively buttons
-                buttons.pause.disabled = true;
-                buttons.play.disabled = false;
-            }, false);
-
-
-            // Handle Stop button
-            buttons.stop.addEventListener("click", function(){
-                Spectrum.stop();
-
-                // Enable/Disable respectively buttons
-                buttons.pause.disabled = true;
-                buttons.play.disabled = false;
-                buttons.stop.disabled = true;
-            }, false);
-
-
-            // Add a listener to enable the play button once it's ready
-            Spectrum.on('ready', function () {
-                buttons.play.disabled = false;
-            });
-            
-            // If you want a responsive mode (so when the user resizes the window)
-            // the spectrum will be still playable
-            window.addEventListener("resize", function(){
-                // Get the current progress according to the cursor position
-                var currentProgress = Spectrum.getCurrentTime() / Spectrum.getDuration();
-
-                // Reset graph
-                Spectrum.empty();
-                Spectrum.drawBuffer();
-                // Set original position
-                Spectrum.seekTo(currentProgress);
-
-                // Enable/Disable respectively buttons
-                buttons.pause.disabled = true;
-                buttons.play.disabled = false;
-                buttons.stop.disabled = false;
-            }, false);
-
-            // Load the audio file from your domain !
-            Spectrum.load(
-                '<%= rails_blob_path(@track.audio) %>'
-                                
-                );
-        </script>
+  </div>
+  <div class="d-flex flex-column">
+    <% if @track.audio.attached? then %>
+      <!-- Create a div where the audio waves will be shown -->
+      <div id="audio-spectrum"></div>
+      <!-- Create action buttons -->
+      <div class="d-flex justify-content-center">
+        <input type="button" id="btn-play" value="Play" disabled="disabled" class="btn btn-primary text-white"/>
+        <input type="button" id="btn-pause" value="Pause" disabled="disabled" class="btn btn-primary text-white"/>
+        <input type="button" id="btn-stop" value="Stop" disabled="disabled" class="btn btn-primary text-white" />
+      </div>
+      <!-- Load the wavesurferscript , in this case from a CDN -->
+      <%# <script src="https://unpkg.com/wavesurfer.js"></script> %>
+      <script >
+        // Store the 3 buttons in some object
+        var buttons = {
+            play: document.getElementById("btn-play"),
+            pause: document.getElementById("btn-pause"),
+            stop: document.getElementById("btn-stop")
+        };
+        
+        // Create an instance of wave surfer with its configuration
+        var Spectrum = WaveSurfer.create({
+            container: '#audio-spectrum',
+            progressColor: "#03a9f4"
+        });
+        
+        // Handle Play button
+        buttons.play.addEventListener("click", function(){
+            Spectrum.play();
+        
+            // Enable/Disable respectively buttons
+            buttons.stop.disabled = false;
+            buttons.pause.disabled = false;
+            buttons.play.disabled = true;
+        }, false);
+        
+        // Handle Pause button
+        buttons.pause.addEventListener("click", function(){
+            Spectrum.pause();
+        
+            // Enable/Disable respectively buttons
+            buttons.pause.disabled = true;
+            buttons.play.disabled = false;
+        }, false);
+        
+        
+        // Handle Stop button
+        buttons.stop.addEventListener("click", function(){
+            Spectrum.stop();
+        
+            // Enable/Disable respectively buttons
+            buttons.pause.disabled = true;
+            buttons.play.disabled = false;
+            buttons.stop.disabled = true;
+        }, false);
+        
+        
+        // Add a listener to enable the play button once it's ready
+        Spectrum.on('ready', function () {
+            buttons.play.disabled = false;
+        });
+        
+        // If you want a responsive mode (so when the user resizes the window)
+        // the spectrum will be still playable
+        window.addEventListener("resize", function(){
+            // Get the current progress according to the cursor position
+            var currentProgress = Spectrum.getCurrentTime() / Spectrum.getDuration();
+        
+            // Reset graph
+            Spectrum.empty();
+            Spectrum.drawBuffer();
+            // Set original position
+            Spectrum.seekTo(currentProgress);
+        
+            // Enable/Disable respectively buttons
+            buttons.pause.disabled = true;
+            buttons.play.disabled = false;
+            buttons.stop.disabled = false;
+        }, false);
+        
+        // Load the audio file from your domain !
+        Spectrum.load(
+            '<%= rails_blob_path(@track.audio) %>'
+        
+            );
+      </script>
     <% end %>
-<div class="align-items-center">
-
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <script>
-    document
-        .querySelector("[data-stripe='payment']")
-        .addEventListener("click", () => {
-        const stripe = Stripe(
-            "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
-        );
-
-        stripe.redirectToCheckout({
-            sessionId: "<%= @session_id %>"
-        });
-        });
-    </script>
+    <div class="align-items-center">
+      <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        document
+            .querySelector("[data-stripe='payment']")
+            .addEventListener("click", () => {
+            const stripe = Stripe(
+                "<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+            );
+        
+            stripe.redirectToCheckout({
+                sessionId: "<%= @session_id %>"
+            });
+            });
+      </script>
     </div>
-<%# end %>
-</div>
+    <%# end %>
+  </div>
 </div>
 <%= render "layouts/bg_change"%>
