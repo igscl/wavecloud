@@ -25,6 +25,10 @@ $theme-colors: (
   "white": rgb(255, 255, 255),
 );
 
+#listing-tracks{
+    width: 70%;
+}
+
 @media (max-width: 1024px) {
     #login-image {
         display: none;
