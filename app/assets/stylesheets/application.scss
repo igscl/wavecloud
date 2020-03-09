@@ -21,6 +21,14 @@ $theme-colors: (
   "lighter": #f7f7f7,
   "white": rgb(255, 255, 255),
 );
+
+@media (max-width: 1024px) {
+    #login-image {
+        display: none;
+    }
+  }
+
+
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 $font-family-base: 'Roboto', sans-serif; 
 

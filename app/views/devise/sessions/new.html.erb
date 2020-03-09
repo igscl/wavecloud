@@ -1,41 +1,35 @@
 <br />
 <br />
-<div class="d-flex justify-content-xl-around ">
-  <div class="p-2">
-  <%= image_tag("logo2.jpg", :border=>0)%>
-  </div>
-  <div class="d-flex justify-content-around flex-column">
+<div class="container">
+  <div class="row">
+    <div class="col-sm" id="login-image">
+      <%= image_tag("logo2.jpg", :border=>0)%>
+    </div>
+    <div class="col-sm">
       <h4 class="text-danger p-2">myhar.money</h4>
       <br />
       <h1 class="font-weight-bold text-primary p-2">Log in</h1>
-
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field p-2">
           <% f.label :email%><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "btn btn-lighter", placeholder:"Email" %>
         </div>
-
         <div class="form-group p-2">
           <% f.label :password %><br />
           <%= f.password_field :password, autocomplete: "current-password", class: "btn btn-lighter" , placeholder:"Password"%>
         </div>
-
         <% if devise_mapping.rememberable? %>
           <div class="form-group p-2">
             <%= f.check_box :remember_me %>
             <%= f.label :remember_me %>
           </div>
         <% end %>
-    <div>
-      <%= f.submit "Login", class: "btn btn-primary text-white" %>
+        <div class="form-group p-2">
+          <%= f.submit "Login", class: "btn btn-primary text-white" %>
+        </div>
+        <div class="form-group p-2">
+        <%= render "devise/shared/links", class: "form-group p-2" %>
       </div>
-    <div>
-      <br />
-    </div>
-
-  <% end %>
-
-  <%= render "devise/shared/links" %>
-
+    <% end %>
   </div>
 </div>
