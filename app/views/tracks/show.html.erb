@@ -3,15 +3,21 @@
 <div class="d-flex flex-column on-top ">
   <div class="d-flex flex-column align-items-center">
     <br />
-    <h1><%= @track.title %></h1>
-    <p>Description: <%= @track.description %></p>
-    <p>Album: <%= @track.album %></p>
-    <p>Genre: <%= @track.genre.name %></p>
-    <p>Donation target: $<%= @track.donate %></p>
-    <p>Total donations: $<%= @track.total_donations %></p>
+
+  <div class="card text-center" id="listing-tracks">
+
+    <div class= "card-header"><h1><%= @track.title%></h1></div>
+    <h5 class="card-title"><%= @track.album %></h5>
+    <p class="card-text"><%= @track.description %></p>
+    
+    <p class="card-text">Genre: <%= @track.genre.name %></p>
+    <div class="card-footer text-muted">Donation target: $<%= @track.donate %>
+    <div>Total donations: $<%= @track.total_donations %></div>
     <p>
+
       <div>
-        <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button>
+        <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button></div>
+      </div>
       </div>
     </p>
     <% if current_user.favorite_ids.include? @track.id %>
