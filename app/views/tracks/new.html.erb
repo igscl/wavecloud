@@ -1,5 +1,6 @@
 <%= render '/layouts/navbar' %>
-
+<br/>
+<div class="d-flex flex-column align-items-center">
 <div>
     <%= form_with(model: @track, local: true) do |form| %>
     <%# this is calling the method 'new' in the track controller#%>
@@ -31,4 +32,5 @@
             <%= form.submit %>
         </div>
     <% end %>
+</div>
 </div>

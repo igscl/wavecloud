@@ -11,10 +11,15 @@
     <p class="card-text"><%= @track.description %></p>
     
     <p class="card-text">Genre: <%= @track.genre.name %></p>
-    <div class="card-footer text-muted">Donation target: $<%= @track.donate %>
+
+    <div class="card-footer text-muted">
+      <div class="progress-bar-wrapper">
+      <div class="progress-bar text-dark" id="progress-bar-max" style="width: <%= "#{@track.progress}%"%>"></div>
+      </div><br/>
+      <%= "#{@track.progress.round(2)}% raised of $#{@track.donate} pledge"%><br/>
+    Donation target: $<%= @track.donate %>
     <div>Total donations: $<%= @track.total_donations %></div>
     <p>
-
       <div>
         <button data-stripe="payment" class="btn btn-primary text-white"> Donate! <%= number_to_currency(1) %></button></div>
       </div>
