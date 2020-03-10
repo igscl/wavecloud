@@ -6,7 +6,11 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
+    unless Profile.exists?(current_user.id) == false
     redirect_to Profile.find(current_user.id)
+    else 
+      redirect_to :action => 'new'
+    end
     # id = @profile.user_id
     # redirect_to profile_url(id)
     # @profile = Profile.find(current_user.id)
@@ -17,6 +21,7 @@ class ProfilesController < ApplicationController
   def show
     id = @profile.user_id
     @user_tracks = User.find(id).tracks
+
     # id = params[:id]
     # @user_tracks = Profile.find(id).user_id
     # @user_tracks = current_user.tracks

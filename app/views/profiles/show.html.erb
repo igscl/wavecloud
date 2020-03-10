@@ -1,7 +1,11 @@
 <%# notice %>
 <%= render '/layouts/navbar' %>
-
-<%= render '/layouts/navbar' %>
+<% if current_user.tracks.count == 0%>
+<div class="d-flex flex-column align-items-center">
+<br/>
+<h3>You have no tracks available</h3>
+</div>
+<%end%>
 <div class="d-flex flex-column align-items-center">
   <% @user_tracks.each do |track| %>
     <div class="card" id="listing-tracks"">

@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     req.path.exclude? 'rails/active_storage'
   }
   #CHECK THIS
+
+  
 end
