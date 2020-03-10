@@ -4,7 +4,8 @@ class TracksController < ApplicationController
   before_action :set_genre, only: [:new, :edit, :create]
 
   def index
-    @tracks = Track.all
+    @tracks = Track.all.order('created_at DESC')
+    #FavoriteTrack.all.order('track_id DESC')
     # @tracks = User.find(1).tracks
     #Saving this into an instance variable. We want to save what we need right now.
   end

@@ -17,7 +17,7 @@
         <p><%= track.album %></p>
       <div class="card-footer text-muted">
       <div class="progress-bar-wrapper">
-      <div class="progress-bar text-dark" id="progress-bar-max" style="width: <%= "#{track.progress}%"%>"></div></div>
+      <div class="progress-bar text-dark progress-bar-striped" id="progress-bar-max" style="width: <%= "#{track.progress}%"%>"></div></div>
       </div>
         <p><%= link_to "#{track.user.email}", profile_path(track.user.id) %></p>
         <% if track.audio.attached? then %>

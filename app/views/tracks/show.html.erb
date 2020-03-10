@@ -14,7 +14,7 @@
 
     <div class="card-footer text-muted">
       <div class="progress-bar-wrapper">
-      <div class="progress-bar text-dark" id="progress-bar-max" style="width: <%= "#{@track.progress}%"%>"></div>
+      <div class="progress-bar text-dark progress-bar-striped" id="progress-bar-max" style="width: <%= "#{@track.progress}%"%>"></div>
       </div><br/>
       <%= "#{@track.progress.round(2)}% raised of $#{@track.donate} pledge"%><br/>
     Donation target: $<%= @track.donate %>

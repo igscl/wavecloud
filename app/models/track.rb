@@ -1,4 +1,5 @@
 class Track < ApplicationRecord
+  validates_presence_of :title, :genre_id, :album, :description, :donate
   belongs_to :user
   belongs_to :genre
   has_one :audio
