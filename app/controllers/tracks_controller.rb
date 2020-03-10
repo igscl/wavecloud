@@ -1,7 +1,7 @@
 class TracksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_track, only: [:show, :edit, :update, :destroy, :favorite]
   before_action :set_genre, only: [:new, :edit, :create]
-  before_action :authenticate_user!
 
   def index
     @tracks = Track.all
