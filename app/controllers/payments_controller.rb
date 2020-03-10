@@ -22,7 +22,7 @@ class PaymentsController < ApplicationController
             listing.total_donations += 1 #listing.donate
             listing.save
             buyer.donations << listing
-            trackdonation.value == 1
+            trackdonation.value += 1
             trackdonation.save
             buyer.save
 
