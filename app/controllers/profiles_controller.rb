@@ -8,13 +8,13 @@ class ProfilesController < ApplicationController
   def index
     unless Profile.exists?(current_user.id)
     redirect_to :action => 'new'
-    end
+    else
     # id = @profile.user_id
     # redirect_to profile_url(id)
     @profile = Profile.find(current_user.id)
     @track_donations = TrackDonation.where(:user_id => current_user.id).count
     #I cannot use sum(:value) as some values are being added as zero
-
+    end
   end
 
   # GET /profiles/1
