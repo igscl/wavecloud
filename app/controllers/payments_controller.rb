@@ -23,6 +23,7 @@ class PaymentsController < ApplicationController
             listing.save
             buyer.donations << listing
             trackdonation.value += 1
+            #if the table is empty when first setting it up, this value will not change and will stay zero. Need to figure out a fix.
             trackdonation.save
             buyer.save
 

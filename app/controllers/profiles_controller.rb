@@ -6,14 +6,14 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.json
   def index
-    unless Profile.exists?(current_user.id) == false
-    redirect_to Profile.find(current_user.id)
-    else 
-      redirect_to :action => 'new'
+    unless Profile.exists?(current_user.id)
+    redirect_to :action => 'new'
     end
     # id = @profile.user_id
     # redirect_to profile_url(id)
-    # @profile = Profile.find(current_user.id)
+    @profile = Profile.find(current_user.id)
+    @track_donations = TrackDonation.where(:user_id => current_user.id).sum(:value)
+
   end
 
   # GET /profiles/1
