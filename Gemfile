@@ -6,7 +6,6 @@ ruby '2.6.3'
 gem 'bootstrap', '~> 4.4.1'
 #Added bootstrap and jquery and audiojs
 gem 'jquery-rails'
-gem 'audiojs-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
