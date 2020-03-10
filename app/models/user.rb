@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :favorite_tracks
   has_many :favorites, through: :favorite_tracks, source: :track # the actual recipes a user favorites
+  has_many :track_donations
+  has_many :donations, through: :track_donations, source: :track
+  
 end

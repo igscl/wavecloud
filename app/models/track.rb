@@ -7,7 +7,9 @@ class Track < ApplicationRecord
 
   has_many :favorite_tracks # just the 'relationships'
   has_many :favorited_by, through: :favorite_tracks, source: :user # the actual users favoriting a recipe
-
+  has_many :track_donations
+  has_many :donated_by, through: :track_donations, source: :user
+  
   def progress
     total_donations.to_f / donate * 100
   end
