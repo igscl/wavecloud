@@ -33,6 +33,12 @@ $theme-colors: (
     width: 70%;
 }
 
+#main-fields{
+    width: auto;
+    background-color: #f7f7f7;
+
+}
+
 @media (max-width: 1024px) {
     #login-image {
         display: none;
