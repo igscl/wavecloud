@@ -15,6 +15,10 @@
           <h3><%= link_to track.title, track_path(track.id)%></h3>
         </p>
         <p><%= track.album %></p>
+      <div class="card-footer text-muted">
+      <div class="progress-bar-wrapper">
+      <div class="progress-bar text-dark" id="progress-bar-max" style="width: <%= "#{track.progress}%"%>"></div></div>
+      </div>
         <p><%= link_to "#{track.user.email}", profile_path(track.user.id) %></p>
         <% if track.audio.attached? then %>
           <button class="btn btn-primary text-white"> <%= link_to "Download", track.audio, class: "btn btn-primary text-white" %></button>
