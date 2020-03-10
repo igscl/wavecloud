@@ -14,7 +14,8 @@ class ProfilesController < ApplicationController
     @profile = Profile.find(current_user.id)
     @track_donations = TrackDonation.where(:user_id => current_user.id).count
     #I cannot use sum(:value) as some values are being added as zero
-    end
+    @favorites = current_user.favorites
+  end
   end
 
   # GET /profiles/1

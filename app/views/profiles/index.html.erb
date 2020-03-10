@@ -1,13 +1,41 @@
-
 <%= render '/layouts/navbar' %>
-
+<div class="d-flex flex-column align-items-center">
+  <br/>
+  <h2> I have given:</h2>
+  <%= link_to "#{number_to_currency(@track_donations, :unit => "$", :class => "primary")}", profiles_url, class: "nav-link h2" %>
+  <h2> I have received: </h2>
+  <%= link_to "#{number_to_currency(current_user.tracks.sum(:total_donations), :unit => "$", :class => "primary")}", profiles_url, class: "nav-link h2" %>
+  <br/>
+  <h3>My Favorite Tracks:</h3>
+</div>
+<% if @favorites.count == 0%>
+  <div class="d-flex flex-column align-items-center">
+    <br/>
+    <h3>You have no favorites</h3>
+  </div>
+<%end%>
 <div class="d-flex flex-column align-items-center">
 <br/>
-<h2> I have given:</h2>
-<%= link_to "#{number_to_currency(@track_donations, :unit => "$", :class => "primary")}", root_url, class: "nav-link h2" %>
-<h2> I have received: </h2>
-<%= link_to "#{number_to_currency(current_user.tracks.sum(:total_donations), :unit => "$", :class => "primary")}", root_url, class: "nav-link h2" %>
-
-
-
+  <% @favorites.each do |track| %>
+    <div class="card" id="listing-tracks"">
+      <div class="card-body text-center">
+        <p><% image_tag("divider-t.png", class: "img-fluid max-width: 100%") %></p>
+        <p>
+          <h3><%= link_to track.title, track_path(track.id)%></h3>
+        </p>
+        <p><%= track.album %></p>
+        <p><%= link_to "#{track.user.email}", profile_path(track.user.id) %></p>
+        <% if track.audio.attached? then %>
+          <button class="btn btn-primary text-white"> <%= link_to "Download", track.audio, class: "btn btn-primary text-white" %></button>
+        <% end %>
+        <div class="flex p-2">
+          <%# link_to "edit", edit_track_path(track.id) if current_user.id == track.user.id %>
+          <%# link_to "show", track_path(track.id) %>
+          <%= link_to "delete", track_path(track), class: "card-link",
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } if current_user.id == track.user.id %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
