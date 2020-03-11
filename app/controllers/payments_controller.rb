@@ -17,15 +17,20 @@ class PaymentsController < ApplicationController
             
             buyer = User.find(payment_intent.metadata.user_id)
             listing = Track.find(payment_intent.metadata.track_id)
-            trackdonation = TrackDonation.last
+            
             #trackdonation = TrackDonation.find(payment_intent.metadata.track_id)
             listing.total_donations += 1 #listing.donate
             listing.save
             buyer.donations << listing
+            buyer.save
+            trackdonation = TrackDonation.last
+            p "**************************************************************************"
+            p trackdonation.value
             trackdonation.value += 1
+            p trackdonation.value
             #if the table is empty when first setting it up, this value will not change and will stay zero. Need to figure out a fix.
             trackdonation.save
-            buyer.save
+            
 
     
             # order = Order.new
@@ -42,7 +47,8 @@ class PaymentsController < ApplicationController
         else
             # Unexpected event type
             # render :nothing => true, :status => :bad_request
-            render body: nil, status: bad_request
+            p event.type
+            render body: nil, status: 200
             return
         end
         # success, but don't need to send anything back to Stripe

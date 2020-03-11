@@ -13,7 +13,7 @@ class ProfilesController < ApplicationController
     # id = @profile.user_id
     # redirect_to profile_url(id)
     @profile = Profile.find(current_user.id)
-    @track_donations = TrackDonation.where(:user_id => current_user.id).count
+    @track_donations = TrackDonation.where(:user_id => current_user.id).sum(:value)
     #I cannot use sum(:value) as some values are being added as zero
     @favorites = current_user.favorites
   end
