@@ -14,7 +14,7 @@
 #     user.save!
 # end
 
-for i in 1..10
+for i in 1..20
     Genre.create(
         name: Faker::Music.genre,
     )
@@ -28,8 +28,8 @@ for i in 1..10
         album: Faker::Music.album,
         description: Faker::Quote.famous_last_words,
         user_id: Faker::Number.between(from: 1, to: 1),
-        donate: Faker::Number.between(from: 1, to: 20),
-        genre_id: Faker::Number.between(from: 1, to: 10)
+        donate: Faker::Number.between(from: 1, to: 100),
+        genre_id: Faker::Number.between(from: 1, to: 20)
 
     )
 
