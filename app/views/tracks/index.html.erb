@@ -12,7 +12,7 @@
         <p><%= track.album %></p>
         <p><%= link_to "#{track.user.email}", profile_path(track.user.id) %></p>
         <% if track.audio.attached? then %>
-          <button class="btn btn-primary text-white"> <%= link_to "Download", track.audio, class: "btn btn-primary text-white" %></button>
+          <%= link_to "Download", track.audio, class: "btn btn-primary text-white" %>
         <% end %>
         <div class="flex p-2">
           <%# link_to "edit", edit_track_path(track.id) if current_user.id == track.user.id %>
