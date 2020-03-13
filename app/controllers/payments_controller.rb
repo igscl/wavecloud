@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:webhook]
+    #this line is used for auth purposes with the webhook
 
     def success
 
@@ -17,33 +18,25 @@ class PaymentsController < ApplicationController
             
             buyer = User.find(payment_intent.metadata.user_id)
             listing = Track.find(payment_intent.metadata.track_id)
-            
-            #trackdonation = TrackDonation.find(payment_intent.metadata.track_id)
-            listing.total_donations += 1 #listing.donate
+            # These 2 lines are looking for the user and track in their respective tables.
+            listing.total_donations += 1
+            # adding to the total_donations column of the Track model
             listing.save
+            # Saving the change in the line above
             buyer.donations << listing
+            # this line is pushing the track and making the relation in the join table. A user has_many :donations through :track_donations. This line relates to the User model which can be checke for verification.
             buyer.save
+            #saving the change
             trackdonation = TrackDonation.last
-            p "**************************************************************************"
-            p trackdonation.value
+            #After all of the above code has run, look for the last transaction.
             trackdonation.value += 1
-            p trackdonation.value
-            #if the table is empty when first setting it up, this value will not change and will stay zero. Need to figure out a fix.
+            #This changes the value of the non-linked item in the join table: the value column. This increases the value of said column by 1. This is default as all donations are made in 1 dollar increments. In future developments this could be referenced in a different way.
             trackdonation.save
-            
+            #saving the change
 
-    
-            # order = Order.new
-            # order.user = buyer
-            # order.listing = listing
-            # order.save
-            # Then define and call a method to handle the successful payment intent.
-            # handle_payment_intent_succeeded(payment_intent)
         when 'payment_method.attached'
             payment_method = event.data.object # contains a Stripe::PaymentMethod
             # Then define and call a method to handle the successful attachment of a PaymentMethod.
-            # handle_payment_method_attached(payment_method)
-        # ... handle other event types
         else
             # Unexpected event type
             # render :nothing => true, :status => :bad_request

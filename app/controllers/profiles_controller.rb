@@ -9,13 +9,15 @@ class ProfilesController < ApplicationController
   def index
     unless Profile.exists?(current_user.id)
     redirect_to :action => 'new'
+    #if the user profile has not been created, redirect to profile creation page when trying to access the index page
     else
-    # id = @profile.user_id
-    # redirect_to profile_url(id)
+
     @profile = Profile.find(current_user.id)
+    #finds the current user id session
     @track_donations = TrackDonation.where(:user_id => current_user.id).sum(:value)
-    #I cannot use sum(:value) as some values are being added as zero
+    #This is using the TrackDonation model to find the donations of the current user and summing the values in the :value column. TrackDonation has a join table.
     @favorites = current_user.favorites
+    #This relates to the current user favorites relation in the User model: a User has many favorites through: :favorite_tracks, source: :track
   end
   end
 
@@ -23,26 +25,28 @@ class ProfilesController < ApplicationController
   # GET /profiles/1.json
   def show
     id = @profile.user_id
+    #the @profile is in the set_profile method called in the before_action
     @user_tracks = User.find(id).tracks
+    #finding the current_user tracks
 
-    # id = params[:id]
-    # @user_tracks = Profile.find(id).user_id
-    # @user_tracks = current_user.tracks
   end
 
   # GET /profiles/new
   def new
     @profile = Profile.new
+    #creating a new profile
   end
 
   # GET /profiles/1/edit
   def edit
+    #not giving this functionality at this point in time
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
     @profile = Profile.create(user_id: current_user.id, id: current_user.id)
+    #creating a new user using the current_user data
 
     respond_to do |format|
       if @profile.save
@@ -99,6 +103,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "User profile does not exist."
       redirect_to :action => 'index'
     end
+    #added this rescue line for security purposes
 
     # Only allow a list of trusted parameters through.
     def profile_params

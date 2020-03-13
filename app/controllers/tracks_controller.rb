@@ -1,19 +1,20 @@
 class TracksController < ApplicationController
   before_action :authenticate_user!
+  #user needs to be logged in
   before_action :set_track, only: [:show, :edit, :update, :destroy, :favorite]
   before_action :set_genre, only: [:new, :edit, :create]
 
   def index
     @tracks = Track.all.order('created_at DESC')
-    #FavoriteTrack.all.order('track_id DESC')
-    # @tracks = User.find(1).tracks
-    #Saving this into an instance variable. We want to save what we need right now.
+    #ordering the tracks on the index page by date created in descending order
   end
 
   def create
     @track = current_user.tracks.create(track_params)
+    #checking for the tracks parameters defined in the private method
     if @track.errors.any?
         render "new"
+        #making sure this is handled if there are errors in the track creation.
     else
         redirect_to root_path
     end
@@ -30,7 +31,7 @@ class TracksController < ApplicationController
       customer_email: current_user.email,
       line_items: [{
           name: @track.title,
-          amount: 100, #@track.donate * 100,         
+          amount: 100, #@track.donate * 100 was the previous value. I just left it as static $1         
           currency: 'aud',
           quantity: 1,
       }],
@@ -64,8 +65,8 @@ class TracksController < ApplicationController
     redirect_to root_path
   end
 
-  # Add and remove favorite recipes
-  # for current_user
+  # Add and remove favorite tracks
+  # for current_user. We can see the relation directly on the User model
   def favorite
     type = params[:type]
     if type == "favorite"
@@ -81,19 +82,19 @@ class TracksController < ApplicationController
 
   def track_params
       params.require(:track).permit(:title, :genre_id, :album, :description, :donate, :track_id, :audio)
-      # The params that we require for the track are these
-      # CHECK to change requirement to have a file to upload
+      # These are the params that we are permitting
   end
 
   def set_track
     id = params[:id]
-    #getting the id that was put into the browser and saving it into the variable id
+    #getting the id that was put into the browser and saving it into the variable id and finding it
     @track = Track.find(id)
+
   end
 
   def set_genre
     @genre = Genre.all
-  #testing this to see if I can add a foreign key
+  #this was added for testing. Not being used yet.
   end
 
 end
