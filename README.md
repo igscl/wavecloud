@@ -70,7 +70,8 @@ Encourage good will and provide a platform that allows to showcase a musician's 
 
 
 - Sitemap
-![Sitemap](./docs/sitemap.png)
+
+    * ![Sitemap](./docs/sitemap.png)
 
 
 - Screenshots
